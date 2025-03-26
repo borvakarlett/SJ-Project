@@ -75,6 +75,9 @@ img { margin: 0px; padding: 0px; border: 5px solid #FFFFFF; }
 	color: #71960c;
 	font-weight: bold;
 	text-decoration: none;
+	line-height: normal;
+	text-shadow: #000 0px 1px 1px;
+	
 }
 
 #templatemo_left_column #site_title h1 a span {

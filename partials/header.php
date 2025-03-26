@@ -1,6 +1,6 @@
 <header>
         <div id="site_title">
-            <h1><a href="#">Paper Blog<span>free web template</span></a></h1>
+            <h1><a href="#">Film World<span>Film Blog</span></a></h1>
         </div>
         
         <nav id="templatemo_menu">
