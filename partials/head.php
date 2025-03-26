@@ -5,6 +5,6 @@
 <title>Paper Blog - free website template</title>
 <meta name="keywords" content="" />
 <meta name="description" content="" />
-<link href="templatemo_style.css" rel="stylesheet" type="text/css" />
+<link href="css/templatemo_style.css" rel="stylesheet" type="text/css" />
 <link href="css/jquery.ennui.contentslider.css" rel="stylesheet" type="text/css" media="screen,projection" />
 </head>
