@@ -233,12 +233,12 @@ img { margin: 0px; padding: 0px; border: 5px solid #FFFFFF; }
 	border: none;
 }
 /*my own added*/
-/* Contact form styles */
+/* Contact*/
 .contact_form_section {
     padding: 40px;
     background: #f4f4f4;
     margin: 0 auto;
-    width: 70%; /* Adjust width as needed */
+    width: 70%; 
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
@@ -295,3 +295,25 @@ form {
     flex-direction: column;
 }
 
+.thank_you{
+    padding: 40px;
+    background: #f4f4f4;
+    margin: 0 auto;
+	margin-bottom: 500px;
+	margin-top: 50px;
+    width: 70%;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+	text-align: center;
+}
+
+.thank_you h2{
+	margin-bottom: 20px;
+	color: #749d07;
+	font-size: 30px;
+	text-shadow: #000 0px 1px 1px;
+	line-height: normal;
+}
+
+.thank_you p{
+	font-size: medium;
+}

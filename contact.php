@@ -1,5 +1,7 @@
 <?php
     include('partials/head.php');
+    include('functions/contact-handling.php');
+    handle_contact();
 ?>
 <body>
 <div id="templatemo_wrapper">
@@ -16,7 +18,7 @@
     <div id="templatemo_content">
         <div class="contact_form_section">
             <h2>Contact Us</h2>
-            <form action="your_submission_script.php" method="POST">
+            <form action="thank-you.php" method="POST">
                 <div class="form_group">
                     <label for="name">Your Name</label>
                     <input type="text" id="name" name="name" required />
