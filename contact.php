@@ -1,13 +1,13 @@
 <?php
-    include('partials/head.php');
-    include('functions/contact-handling.php');
+    include('_inc/partials/head.php');
+    include('_inc/functions/contact-handling.php');
     handle_contact();
 ?>
 <body>
 <div id="templatemo_wrapper">
     <div id="templatemo_left_column">
         <?php
-            include('partials/header.php');
+            include('_inc/partials/header.php');
         ?>
         
         <div id="templatemo_sidebar">
@@ -42,7 +42,7 @@
 
 <!--footer-->
 <?php
-    include('partials/footer.php');
+    include('_inc/partials/footer.php');
 ?>
 </body>
 </html>
