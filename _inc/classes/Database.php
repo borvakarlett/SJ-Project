@@ -22,5 +22,12 @@
             return $this->pdo;
     }
 
+    public function getAllArticles() {
+        $sql = "SELECT id, title, created_at FROM articles ORDER BY created_at DESC";
+        $stmt = $this->pdo->prepare($sql);
+        $stmt->execute();
+        return $stmt->fetchAll(PDO::FETCH_ASSOC);
+    }
+
 }
 ?>

@@ -1,7 +1,7 @@
 <?php
-    session_start();
-    require_once '_inc/functions/login-handling.php';
     include('_inc/partials/head.php');
+    require_once '_inc/functions/login-handling.php';
+    
 
     $error = '';
 
@@ -11,7 +11,7 @@
 
         if(validatePassword($username,$password)){
             $_SESSION['username']= $username;
-            header('Location: dashboard.php');
+            header('Location: admin_main.php');
             exit;
         }
         else{

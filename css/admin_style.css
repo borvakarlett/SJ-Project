@@ -1,0 +1,70 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+#templatemo_content {
+    width: 90%;
+    margin: 30px auto;
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.submit_button {
+    background-color: #4CAF50; /* Zelené tlačidlo pre admin */
+    color: white;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 4px;
+}
+
+.submit_button:hover {
+    background-color: #45a049;
+}
+
+.post_section {
+    background-color: #fff;
+    padding: 15px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 20px;
+    color: #333;
+}
+
+p {
+    font-size: 14px;
+}
+
+.cleaner {
+    clear: both;
+}
+
+.admin_topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+}
+
+.left_buttons a,
+.right_buttons a {
+    margin-right: 10px;
+}
+
+.right_buttons {
+    margin-left: auto;
+}
+
+.logout_button {
+    background-color: #d9534f;
+}
+
+.logout_button:hover {
+    background-color: #c9302c;
+}
