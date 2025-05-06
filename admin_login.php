@@ -1,23 +1,23 @@
 <?php
     include('_inc/partials/head.php');
-    require_once '_inc/functions/login-handling.php';
-    
 
-    $error = '';
+    //auth object for handling authorization
+    $auth = new Auth();
 
-    if($_SERVER['REQUEST_METHOD']=='POST'){
+    //after submission get the username and password or empty string
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['username'] ?? '';
         $password = $_POST['password'] ?? '';
-
-        if(validatePassword($username,$password)){
-            $_SESSION['username']= $username;
+        
+        //using auth class function, we check if the password and usernames are valid
+        if ($auth->validatePassword($username, $password)) {
+            //if valid we log in and head to admin main page
+            $auth->login($username);
             header('Location: admin_main.php');
             exit;
+        } else {
+            $error = "Incorrect username or password.";
         }
-        else{
-            $error = 'Incorrect username or password.';
-        }
-
     }
 ?>
 
@@ -26,7 +26,7 @@
         <div id="templatemo_content">
             <div class="contact_form_section">
                 <h2>Admin Login</h2>
-                
+
                 <?php if (!empty($error)): ?>
                     <p style="color: red; text-align:center; margin-bottom: 20px;"><?php echo $error; ?></p>
                 <?php endif; ?>

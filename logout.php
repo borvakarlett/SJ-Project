@@ -1,8 +1,7 @@
 <?php
+require_once('_inc/autoload.php');
 session_start();
-session_unset();
-session_destroy(); 
 
-header("Location: admin_login.php");
-exit;
+$auth = new Auth();
+$auth->logout();
 ?>

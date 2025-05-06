@@ -1,5 +1,10 @@
 <?php
-    require_once('_inc/functions/authorization.php');
+    //starts session
+    session_start();
+    //loads all the classes with functions
+    require_once('_inc/autoload.php');
+    //creats object for authentication
+    $auth = new Auth();
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -10,7 +15,8 @@
 <meta name="keywords" content="" />
 <meta name="description" content="" />
 
-<?php if (isAdminLoggedIn()): ?>
+<!--checks if admin is logged in and applies css based on that-->
+<?php if($auth->isAdminLoggedIn()): ?>
     <link rel="stylesheet" href="css/admin_style.css">
 <?php else: ?>
     <link rel="stylesheet" href="css/templatemo_style.css">

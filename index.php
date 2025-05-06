@@ -1,5 +1,14 @@
 <?php
+
     include('_inc/partials/head.php');
+
+    //connecting to database
+    $db = new Database();
+    $pdo = $db->getConnection();
+    //create instance for managing main page functions
+    $mainPage = new MainPage($pdo);
+    //function to get the last three articles
+    $articles = $mainPage->getLastArticles(3);
 ?>
 <body>
 <div id="templatemo_wrapper">
@@ -10,33 +19,7 @@
     ?>
         
         <div id="templatemo_sidebar">
-        
-        	<div class="sidebar_box">
-            
-                <h2>Design Trends</h2>
-                        
-                <div class="news_box">
-                    <h3><a href="#">Morbi dapibus dolor sit amet metus suscipit iaculis</a></h3>
-                    <p>Cras nisl eros, elementum eu, iaculis vitae, viverra ut, ligula. Pellentesque metus. Duis dolor.</p>
-                </div>
-                
-                <div class="news_box">
-                    <h3><a href="#">Donec a purus vel purus sollicitudin placerat</a></h3>
-                    <p>Nunc at sem. Sed pellentesque placerat augue. Mauris pede nisl, placerat nec, lobortis vitae, dictum sed, neque.</p>
-                </div>
-                
-                <div class="news_box">
-                    <h3><a href="#">Duis nulla diam, posuere ac, varius id, ullamcorper sit amet, libero</a></h3>
-                    <p>Nam sodales, pede vel dapibus lobortis, ipsum diam molestie risus, a vulputate risus nisl pulvinar lacus.</p>
-                </div>
-                
-                <div class="news_box">
-                    <h3><a href="#">Lorem ipsum dolor sit amet, consectetur adipiscing elit</a></h3>
-                    <p>Nulla et nunc commodo ante ornare imperdiet. Donec nunc neque, pulvinar a, vestibulum eget, luctus id, orci. </p>
-                </div>
-            
-            </div>
-    
+
     	</div>
     	
     </div> <!-- end of templatemo_left_column -->
@@ -47,73 +30,23 @@
         
      	<div id="one" class="contentslider">
             <div class="cs_wrapper">
-                <div class="cs_slider">
-                
-                    <div class="cs_article">
-                        <a href="#">
-                        	<img src="images/article01.jpg" alt="Artist's interpretation of article headline" />
-                        </a>
-                        
-                        <div class="text">
-                            <h2><a href="#">Project One</a></h2>
-                            
-                            <p>
-                            Hendrerit tincidunt vero vel eorum claritatem. Soluta legunt quod qui dolore.
-                            </p>
-                            
-                            <a class="readmore" href="#">Read More</a>
-                   		</div>
-                	</div><!-- End cs_article -->
-                    
-                    <div class="cs_article">
-                        <a href="#">
-                        <img src="images/article02.jpg" alt="Artist's interpretation of article headline" />
-                        </a>
-                        
-                        <div class="text">
-                            <h2> <a href="#">Project Two</a></h2>
-                            
-                            <p>
-							Lorem ipsum dolor sit ame, consectetur adipiscing elit. In tincidunt.
-                            </p>
-                            
-                            <a class="readmore" href="#">Read More</a>
-                   		</div>
-                	</div><!-- End cs_article -->
-                    
-                    <div class="cs_article">
-                        <a href="#">
-                        <img src="images/article03.jpg" alt="Artist's interpretation of article headline" />
-                        </a>
-                        
-                        <div class="text">
-                            <h2> <a href="#">Project Three</a></h2>
-                            
-                            <p>
-                            Hendrerit tincidunt vero vel eorum claritatem. Soluta legunt quod qui dolore.
-                            </p>
-                            
-                            <a class="readmore" href="#">Read More</a>
-                   		</div>
-                	</div><!-- End cs_article -->
-                    
-                    <div class="cs_article">
-                        <a href="#">
-                        <img src="images/article04.jpg" alt="Artist's interpretation of article headline" />
-                        </a>
-                        
-                        <div class="text">
-                            <h2> <a href="#">Project Four</a></h2>
-                            
-                            <p>
-                            Aliquam elit risus, volutpat quis, mattis ac, elementum eget, mauris.
-                            </p>
-                            
-                            <a class="readmore" href="#">Read More</a>
-                   		</div>
-                	</div><!-- End cs_article -->
-              
-                </div><!-- End cs_slider -->
+            <div class="cs_slider">
+                <!--printing out the last three articles in slider-->
+                <?php foreach ($articles as $article): ?>
+                <div class="cs_article">
+                    <a href="article.php?id=<?= $article['id'] ?>">
+                        <img src="images/article01.jpg" alt="<?= htmlspecialchars($article['title']) ?>" />
+                    </a>
+                    <div class="text">
+                            <h2><a href="article.php?id=<?= $article['id'] ?>">
+                                <?= htmlspecialchars($article['title']) ?>
+                            </a></h2>
+                            <!--strips content to 100 characters and prints ... afterwards-->
+                            <p><?= htmlspecialchars(mb_strimwidth(strip_tags($article['content']),0,100, '...')) ?></p>
+                    </div>
+                </div>
+                <?php endforeach; ?>
+            </div><!-- End cs_slider -->
             </div><!-- End cs_wrapper -->
         </div><!-- End contentslider -->
 
@@ -135,42 +68,27 @@
 	<script src="js/chili/recipes.js" type="text/javascript"></script>
 
         
-        </div>   <!-- end of slider -->  
-        
-        <div class="post_section">
-        
-            <h2><a href="#">Free CSS Template</a></h2>
-            
-            <div class="post_content">
-                
-                May 24th in <a href="#">Web Template</a> by <a href="#">TemplateMo</a>
-                
-                <a href="#"><img src="images/templatemo_image_01.jpg" alt="image" /></a>
-              <p><a href="#">TemplateMo</a> provides high quality <a href="#">free css templates</a> for your personal or commercial websites. All website templates are  free to download, modify and apply for your websites without any restriction. Have fun!</p>
-                    
-              <a href="#" class="more">Continue reading...</a> | <a href="#" class="comment">Comments (124)</a>
-            
-            </div>
+        </div>   <!-- end of slider -->
+        <!--printing articles with some overview-->  
+        <?php foreach ($articles as $article): ?>
+    <div class="post_section">
+        <h2><a href="article.php?id=<?= $article['id'] ?>">
+            <?= htmlspecialchars($article['title']) ?>
+        </a></h2>
 
-      </div>
-                
-        <div class="post_section">
-        
-            <h2><a href="#">Lorem ipsum dolor sit amet</a></h2>
-            
-            <div class="post_content">
-            
-                May 24th in <a href="#">Web Template</a> by <a href="#">TemplateMo</a>
-                
-                <a href="#"><img src="images/templatemo_image_02.jpg" alt="image" /></a>
-                
-              <p>Ut nec vestibulum odio. Vivamus vitae nibh eu sem malesuada rutrum et sit amet magna. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Praesent aliquam velit a magna sodales quis elementum ipsum auctor. Ut at metus leo, et dictum sem.</p>
-                
-              <a href="#">Continue reading...</a> | <a href="#">Comments (286)</a>
+        <div class="post_content">
+            <!--full month, day without zeroes, suffix, year-->
+            <?= date('F jS, Y', strtotime($article['created_at'])) ?>
 
-            </div>
-        
-      </div>   
+            <a href="article.php?id=<?= $article['id'] ?>">
+                <img src="images/templatemo_image_01.jpg" alt="image" />
+            </a>
+
+            <p><?= htmlspecialchars(mb_strimwidth(strip_tags($article['content']),0,200,'...')) ?></p>
+
+        </div>
+    </div>
+<?php endforeach; ?>
     
     </div> <!-- end of content -->
 
