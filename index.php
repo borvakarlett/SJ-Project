@@ -35,7 +35,7 @@
                 <?php foreach ($articles as $article): ?>
                 <div class="cs_article">
                     <a href="article.php?id=<?= $article['id'] ?>">
-                        <img src="images/article01.jpg" alt="<?= htmlspecialchars($article['title']) ?>" />
+                        <img src="images/film_image1.png" alt="<?= htmlspecialchars($article['title']) ?>" />
                     </a>
                     <div class="text">
                             <h2><a href="article.php?id=<?= $article['id'] ?>">
@@ -81,7 +81,7 @@
             <?= date('F jS, Y', strtotime($article['created_at'])) ?>
 
             <a href="article.php?id=<?= $article['id'] ?>">
-                <img src="images/templatemo_image_01.jpg" alt="image" />
+                <img src="images/film_image2.jpg" alt="image" />
             </a>
 
             <p><?= htmlspecialchars(mb_strimwidth(strip_tags($article['content']),0,200,'...')) ?></p>
