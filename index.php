@@ -6,9 +6,10 @@
     $db = new Database();
     $pdo = $db->getConnection();
     //create instance for managing main page functions
-    $mainPage = new MainPage($pdo);
+    $mainPage = new Article($pdo);
     //function to get the last three articles
     $articles = $mainPage->getLastArticles(3);
+    $randomArticles = $mainPage->getRandomArticles(3);
 ?>
 <body>
 <div id="templatemo_wrapper">
@@ -31,18 +32,18 @@
      	<div id="one" class="contentslider">
             <div class="cs_wrapper">
             <div class="cs_slider">
-                <!--printing out the last three articles in slider-->
-                <?php foreach ($articles as $article): ?>
+                <!--printing out random three articles in slider-->
+                <?php foreach ($randomArticles as $randArticle): ?>
                 <div class="cs_article">
                     <a href="article.php?id=<?= $article['id'] ?>">
                         <img src="images/film_image1.png" alt="<?= htmlspecialchars($article['title']) ?>" />
                     </a>
                     <div class="text">
-                            <h2><a href="article.php?id=<?= $article['id'] ?>">
-                                <?= htmlspecialchars($article['title']) ?>
+                            <h2><a href="article.php?id=<?= $randArticle['id'] ?>">
+                                <?= htmlspecialchars($randArticle['title']) ?>
                             </a></h2>
                             <!--strips content to 100 characters and prints ... afterwards-->
-                            <p><?= htmlspecialchars(mb_strimwidth(strip_tags($article['content']),0,100, '...')) ?></p>
+                            <p><?= htmlspecialchars(mb_strimwidth(strip_tags($randArticle['content']),0,100, '...')) ?></p>
                     </div>
                 </div>
                 <?php endforeach; ?>

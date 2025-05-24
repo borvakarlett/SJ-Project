@@ -4,7 +4,7 @@
 
     $db = new Database();
     $pdo = $db->getConnection();
-    $allPages = new AllPages($pdo);
+    $allPages = new Article($pdo);
     //get all articles from database
     $articles = $allPages->getAllArticles();
 ?>
