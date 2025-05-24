@@ -1,6 +1,6 @@
 <div id="templatemo_footer_wrapper">
  <div id="templatemo_footer">
-
+    <!--footer menu-->
     <ul class="footer_menu">
         <li><a href="index.php">Home</a></li>
         <li><a href="all_pages.php">All Articles</a></li>

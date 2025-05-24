@@ -10,7 +10,7 @@ $pdo = $db->getConnection();
 $msgObj = new Messages($pdo); 
 
 //if want to delete then use the delete message function and redirect back to this page
-if (isset($_GET['delete_id'])) {
+if(isset($_GET['delete_id'])){
     $msgObj->deleteMessage($_GET['delete_id']);
     header("Location: admin_messages.php");
     exit;
@@ -39,15 +39,15 @@ $messages = $msgObj->getAllMessages();
         <!--print every message with user name and email and the message also with option to delete the message-->
         <?php foreach ($messages as $message): ?>
             <div class="post_section">
-                <h3><?= htmlspecialchars($message['name']) ?> (<?= htmlspecialchars($message['email']) ?>)</h3>
-                <p><strong>Date:</strong> <?= date('F j, Y H:i', strtotime($message['created_at'])) ?></p>
+                <h3><?= htmlspecialchars($message['name'])?>(<?= htmlspecialchars($message['email'])?>)</h3>
+                <p><strong>Date:</strong> <?=date('F j, Y H:i', strtotime($message['created_at']))?></p>
                 <p><?= nl2br(htmlspecialchars($message['message'])) ?></p>
                 <a href="?delete_id=<?= $message['id'] ?>" class="submit_button logout_button">Delete</a>
             </div>
-        <?php endforeach; ?>
+        <?php endforeach;?>
     <?php else: ?>
         <p>No messages found.</p>
-    <?php endif; ?>
+    <?php endif;?>
 </div>
 </body>
 </html>

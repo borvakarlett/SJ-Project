@@ -23,6 +23,7 @@
 <body>
 <div id="templatemo_wrapper">
     <div id="templatemo_left_column">
+        <!--menu-->
         <?php include('_inc/partials/header.php'); ?>
         <div id="templatemo_sidebar"></div>
     </div>
@@ -38,12 +39,14 @@
                     <p><?=nl2br(htmlspecialchars($article['content'])) ?></p>
                 </div>
             </div>
+
+
             <!--comment section-->
             <div class="comment_section">
                 <h2>Leave a Comment</h2>
                 <!--redirects to comment_submit.php where the submit gets processed-->
                 <form method="POST" action="comment_submit.php">
-                    <input type="hidden" name="article_id" value="<?= $article['id'] ?>">
+                    <input type="hidden" name="article_id" value="<?=$article['id']?>">
                     
                     <div class="form_group">
                         <label for="display_name">Name:</label>
@@ -58,15 +61,16 @@
                     <button type="submit" class="submit_button">Submit Comment</button>
                 </form>
 
-                <?php if (!empty($comments)): ?>
+                <!--all comments on article-->
+                <?php if (!empty($comments)):?>
                     <div class="comment_list">
                     <h2>Comments</h2>
                     <!--for every comment under this artilce-->
                     <?php foreach ($comments as $comment): ?>
                     <div class="comment_item">
                             <!--print the comment name, date and content-->
-                            <p><strong><?= htmlspecialchars($comment['comment_name']) ?></strong> </br> <?= date('F j, Y H:i', strtotime($comment['created_at'])) ?>:</p>
-                            <p><?= nl2br(htmlspecialchars($comment['content'])) ?></p>
+                            <p><strong><?=htmlspecialchars($comment['comment_name'])?></strong> </br> <?=date('F j, Y H:i', strtotime($comment['created_at']))?>:</p>
+                            <p><?=nl2br(htmlspecialchars($comment['content']))?></p>
                     </div>
                     <?php endforeach; ?>
                     </div>

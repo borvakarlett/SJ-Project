@@ -13,6 +13,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <body>
 <div id="templatemo_wrapper">
     <div id="templatemo_left_column">
+        <!--menu-->
         <?php include('_inc/partials/header.php'); ?>
         <div id="templatemo_sidebar"></div>
     </div>
@@ -23,6 +24,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <p class="contact_intro">
                 Feel free to write me some movie suggestions or tell me if there's something you don't like. I'm always open to feedback!
             </p>
+            <!--contact form-->
             <form method="POST" action="">
                 <div class="form_group">
                     <label for="name">Your Name</label>

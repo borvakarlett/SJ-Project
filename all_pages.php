@@ -11,6 +11,7 @@
 <body>
 <div id="templatemo_wrapper">
     <div id="templatemo_left_column">
+        <!--menu-->
         <?php include('_inc/partials/header.php'); ?>
         <div id="templatemo_sidebar"></div>
     </div> <!-- end of templatemo_left_column -->
@@ -18,6 +19,7 @@
     <div id="templatemo_content">
         <h1>All Articles</h1>
         <div class="all_articles_list">
+            <!--printing out all article titles and dates-->
             <?php foreach ($articles as $article): ?>
                 <div class="article_list_item">
                     <h2>
@@ -36,7 +38,7 @@
     </div> <!-- end of content -->
 
 </div> <!-- end of templatemo_wrapper -->
-
+<!--footer-->
 <?php include('_inc/partials/footer.php'); ?>
 </body>
 </html>

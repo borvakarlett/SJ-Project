@@ -8,8 +8,8 @@ $pdo = $db->getConnection();
 
 $commentObj = new Comments($pdo);
 
-
-if (isset($_GET['delete_id'])) {
+//delete comment
+if(isset($_GET['delete_id'])) {
     $commentObj->deleteComment($_GET['delete_id']);
     header("Location: admin_comments.php");
     exit;

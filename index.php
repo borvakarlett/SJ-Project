@@ -8,20 +8,18 @@
     //create instance for managing main page functions
     $mainPage = new Article($pdo);
     //function to get the last three articles
-    $articles = $mainPage->getLastArticles(3);
-    $randomArticles = $mainPage->getRandomArticles(3);
+    $articles = $mainPage->getLastArticles();
+    //method to get three random articles
+    $randomArticles = $mainPage->getRandomArticles();
 ?>
 <body>
 <div id="templatemo_wrapper">
     <div id="templatemo_left_column">
     
     <?php
+        //menu
         include('_inc/partials/header.php');
     ?>
-        
-        <div id="templatemo_sidebar">
-
-    	</div>
     	
     </div> <!-- end of templatemo_left_column -->
     
@@ -35,7 +33,7 @@
                 <!--printing out random three articles in slider-->
                 <?php foreach ($randomArticles as $randArticle): ?>
                 <div class="cs_article">
-                    <a href="article.php?id=<?= $article['id'] ?>">
+                    <a href="article.php?id=<?= $randArticle['id'] ?>">
                         <img src="images/film_image1.png" alt="<?= htmlspecialchars($article['title']) ?>" />
                     </a>
                     <div class="text">
@@ -72,24 +70,25 @@
         </div>   <!-- end of slider -->
         <!--printing articles with some overview-->  
         <?php foreach ($articles as $article): ?>
-    <div class="post_section">
-        <h2><a href="article.php?id=<?= $article['id'] ?>">
-            <?= htmlspecialchars($article['title']) ?>
-        </a></h2>
+            <div class="post_section">
+                <h2><a href="article.php?id=<?= $article['id'] ?>">
+                    <!--convert characters into safe ones that arent html-->
+                     <?= htmlspecialchars($article['title']) ?>
+                </a></h2>
 
-        <div class="post_content">
-            <!--full month, day without zeroes, suffix, year-->
-            <?= date('F jS, Y', strtotime($article['created_at'])) ?>
+            <div class="post_content">
+                <!--full month, day without zeroes, suffix, year, converted from text date to timestamp-->
+                <?= date('F jS, Y', strtotime($article['created_at'])) ?>
 
-            <a href="article.php?id=<?= $article['id'] ?>">
-                <img src="images/film_image2.jpg" alt="image" />
-            </a>
-
-            <p><?= htmlspecialchars(mb_strimwidth(strip_tags($article['content']),0,200,'...')) ?></p>
+                <a href="article.php?id=<?= $article['id'] ?>">
+                    <img src="images/film_image2.jpg" alt="image" />
+                </a>
+                <!--remove html chars and shorten the text with ...-->
+                <p><?= htmlspecialchars(mb_strimwidth(strip_tags($article['content']),0,200,'...')) ?></p>
 
         </div>
     </div>
-<?php endforeach; ?>
+        <?php endforeach; ?>
     
     </div> <!-- end of content -->
 
