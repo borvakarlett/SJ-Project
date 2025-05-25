@@ -18,6 +18,12 @@
     //create commentobject to get comments by artilce id
     $commentObj = new Comments($pdo);
     $comments = $commentObj->getCommentsByArticleId($_GET['id']);
+
+    //if posted, then send content to comment submission method in comments
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $new_comment = new Comments($pdo);
+    $new_comment->commentSubmission($_POST);
+}
 ?>
 
 <body>
@@ -45,12 +51,12 @@
             <div class="comment_section">
                 <h2>Leave a Comment</h2>
                 <!--redirects to comment_submit.php where the submit gets processed-->
-                <form method="POST" action="comment_submit.php">
+                <form method="POST" action="">
                     <input type="hidden" name="article_id" value="<?=$article['id']?>">
                     
                     <div class="form_group">
-                        <label for="display_name">Name:</label>
-                        <input type="text" id="display_name" name="display_name" required>
+                        <label for="comment_name">Name:</label>
+                        <input type="text" id="comment_name" name="comment_name" required>
                     </div>
                     
                     <div class="form_group">
