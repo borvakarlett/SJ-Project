@@ -5,9 +5,9 @@
     //connecting to database
     $db = new Database();
     $pdo = $db->getConnection();
-    //create instance for managing main page functions
+    //create instance for managing main page methods
     $mainPage = new Article($pdo);
-    //function to get the last three articles
+    //method to get the last three articles
     $articles = $mainPage->getLastArticles();
     //method to get three random articles
     $randomArticles = $mainPage->getRandomArticles();
@@ -31,17 +31,17 @@
             <div class="cs_wrapper">
             <div class="cs_slider">
                 <!--printing out random three articles in slider-->
-                <?php foreach ($randomArticles as $randArticle): ?>
+                <?php foreach ($randomArticles as $randArticle):?>
                 <div class="cs_article">
-                    <a href="article.php?id=<?= $randArticle['id'] ?>">
-                        <img src="images/film_image1.png" alt="<?= htmlspecialchars($article['title']) ?>" />
+                    <a href="article.php?id=<?= $randArticle['id']?>">
+                        <img src="images/film_image1.png" alt="<?=htmlspecialchars($article['title'])?>" />
                     </a>
                     <div class="text">
-                            <h2><a href="article.php?id=<?= $randArticle['id'] ?>">
-                                <?= htmlspecialchars($randArticle['title']) ?>
+                            <h2><a href="article.php?id=<?= $randArticle['id']?>">
+                                <?= htmlspecialchars($randArticle['title'])?>
                             </a></h2>
                             <!--strips content to 100 characters and prints ... afterwards-->
-                            <p><?= htmlspecialchars(mb_strimwidth(strip_tags($randArticle['content']),0,100, '...')) ?></p>
+                            <p><?=htmlspecialchars(mb_strimwidth(strip_tags($randArticle['content']),0,100, '...'))?></p>
                     </div>
                 </div>
                 <?php endforeach; ?>
@@ -69,22 +69,22 @@
         
         </div>   <!-- end of slider -->
         <!--printing articles with some overview-->  
-        <?php foreach ($articles as $article): ?>
+        <?php foreach ($articles as $article):?>
             <div class="post_section">
-                <h2><a href="article.php?id=<?= $article['id'] ?>">
+                <h2><a href="article.php?id=<?= $article['id']?>">
                     <!--convert characters into safe ones that arent html-->
-                     <?= htmlspecialchars($article['title']) ?>
+                     <?=htmlspecialchars($article['title'])?>
                 </a></h2>
 
             <div class="post_content">
                 <!--full month, day without zeroes, suffix, year, converted from text date to timestamp-->
-                <?= date('F jS, Y', strtotime($article['created_at'])) ?>
+                <?=date('F jS, Y', strtotime($article['created_at']))?>
 
-                <a href="article.php?id=<?= $article['id'] ?>">
-                    <img src="images/film_image2.jpg" alt="image" />
+                <a href="article.php?id=<?=$article['id']?>">
+                    <img src="images/film_image2.jpg" alt="image"/>
                 </a>
                 <!--remove html chars and shorten the text with ...-->
-                <p><?= htmlspecialchars(mb_strimwidth(strip_tags($article['content']),0,200,'...')) ?></p>
+                <p><?=htmlspecialchars(mb_strimwidth(strip_tags($article['content']),0,200,'...'))?></p>
 
         </div>
     </div>

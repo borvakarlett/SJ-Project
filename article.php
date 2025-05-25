@@ -5,7 +5,7 @@
     $pdo = $db->getConnection();
 
     //check if we have article ID
-    if (!isset($_GET['id'])) {
+    if(!isset($_GET['id'])) {
         echo "No article ID provided.";
         //exit if not
         exit;
@@ -29,14 +29,14 @@
     </div>
 
     <div id="templatemo_content">
-        <?php if ($article): ?> <!--if article found-->
+        <?php if ($article):?> <!--if article found-->
             <div class="article_detail">
                 <!--print title, rating and content-->
-                <h1><?= htmlspecialchars($article['title']) ?></h1>
-                <p class="article_rating"><em><?= htmlspecialchars($article['rating']) ?>/10</em></p>
+                <h1><?=htmlspecialchars($article['title'])?></h1>
+                <p class="article_rating"><em><?=htmlspecialchars($article['rating'])?>/10</em></p>
                 <div class="article_body">
                     <!--nl2br turns \n int <\b>-->
-                    <p><?=nl2br(htmlspecialchars($article['content'])) ?></p>
+                    <p><?=nl2br(htmlspecialchars($article['content']))?></p>
                 </div>
             </div>
 
@@ -62,19 +62,21 @@
                 </form>
 
                 <!--all comments on article-->
-                <?php if (!empty($comments)):?>
+                <?php if(!empty($comments)):?>
                     <div class="comment_list">
                     <h2>Comments</h2>
                     <!--for every comment under this artilce-->
-                    <?php foreach ($comments as $comment): ?>
+                    <?php foreach ($comments as $comment):?>
                     <div class="comment_item">
                             <!--print the comment name, date and content-->
-                            <p><strong><?=htmlspecialchars($comment['comment_name'])?></strong> </br> <?=date('F j, Y H:i', strtotime($comment['created_at']))?>:</p>
+                            <p><strong><?=htmlspecialchars($comment['comment_name'])?></strong> 
+                            </br> 
+                            <?=date('F j, Y H:i', strtotime($comment['created_at']))?>:</p>
                             <p><?=nl2br(htmlspecialchars($comment['content']))?></p>
                     </div>
                     <?php endforeach; ?>
                     </div>
-                <?php else: ?>
+                <?php else:?>
                     <p>No comments yet. Be the first to comment!</p>
                 <?php endif; ?>
 

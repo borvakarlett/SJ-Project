@@ -29,7 +29,7 @@
                 <!--if there was error print it-->
                 <?php if (!empty($error)):?>
                     <p style="color: red; text-align:center; margin-bottom: 20px;"><?php echo $error;?></p>
-                <?php endif; ?>
+                <?php endif;?>
 
                 <!--form for login-->
                 <form method="POST" action="">

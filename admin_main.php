@@ -13,7 +13,7 @@
     $articles = $article->getAllArticles();
 
     //if delete is passed, then article gets deleted and redirects back to the main page   
-    if (isset($_GET['delete'])) {
+    if(isset($_GET['delete'])) {
         $articleId = $_GET['delete'];
         $article->deleteArticle($articleId);
         header("Location: admin_main.php");
@@ -36,13 +36,15 @@
         </div>
 </div>
 
-            <?php if (($articles)): ?>
+            <?php if (($articles)):?>
                 <!--print each article with just titlel and date-->
-                <?php foreach ($articles as $article): ?>
+                <?php foreach ($articles as $article):?>
                     <div class="post_section">
                         <h2><?=htmlspecialchars($article['title'])?></h2>
                         <div class="post_content">
-                            <p><strong>Date:</strong> <?=date('F j, Y', strtotime($article['created_at']))?></p>
+                            <p><strong>Date:</strong> 
+                            <?=date('F j, Y', strtotime($article['created_at']))?>
+                            </p>
                             <p>
                                 <!--button to edit and redirect to edit page-->
                                 <a href="admin_edit.php?id=<?=$article['id']?>">Edit</a>

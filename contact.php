@@ -1,9 +1,12 @@
 <?php
 include('_inc/partials/head.php');
 
+$db = new Database();
+$pdo = $db->getConnection();
+
 //check if message was submited and if yes itcreates Contact object and passes the posted stuff there
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $contact = new Contact();
+    $contact = new Messages($pdo);
     $contact->messageSubmission($_POST);
 }
 
