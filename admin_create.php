@@ -19,11 +19,7 @@
             if ($article->createArticle($title, $content, $rating)){
                 header('Location: admin_main.php');
                 exit;
-            }else{
-                $error= 'Failed to publish the article.';
             }
-        }else{
-            $error= 'Please fill out all fields.';
         }
     }
 
