@@ -13,7 +13,7 @@
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
-        //methof which processes the comments
+        //method which processes the comments
         public function commentSubmission($commentData){
         //gets rid of spaces and checks if it's empty
         $article_id= trim($commentData['article_id'] ?? '');

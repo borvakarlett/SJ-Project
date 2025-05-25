@@ -1,9 +1,6 @@
 <?php
     include('_inc/partials/head.php');
 
-    //auth object for handling authorization
-    $auth = new Auth();
-
     //after submission get the username and password or empty string
     if($_SERVER['REQUEST_METHOD'] === 'POST') {
         $username = $_POST['username'] ?? '';
