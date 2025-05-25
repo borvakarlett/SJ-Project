@@ -21,8 +21,7 @@
 
     //if posted, then send content to comment submission method in comments
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $new_comment = new Comments($pdo);
-    $new_comment->commentSubmission($_POST);
+    $commentObj->commentSubmission($_POST);
 }
 ?>
 
