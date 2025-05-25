@@ -27,6 +27,7 @@
             return $stmt->execute([$title, $content, $rating]);
         }
 
+
         //method for editing article
         public function editArticle($id, $title, $content, $rating){
             $stmt = $this->pdo->prepare("UPDATE articles SET title = ?, content = ?, rating = ? WHERE id = ?");
@@ -40,20 +41,16 @@
         }
         
         //method for getting last three articles
-        public function getLastArticles($limit = 3){
-        $stmt = $this->pdo->prepare( "SELECT id, title, content, created_at FROM articles ORDER BY created_at DESC LIMIT :limit");
-        //ensures the value is integer
-        $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+        public function getLastArticles(){
+        $stmt = $this->pdo->prepare( "SELECT id, title, content, created_at FROM articles ORDER BY created_at DESC LIMIT 3");
         //executes and returns as associative array
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
         //method for getting random three articles
-        public function getRandomArticles($limit = 3) {
-        $stmt = $this->pdo->prepare("SELECT id, title, content, created_at FROM articles ORDER BY RAND() LIMIT :limit");
-        //ensure the values is integer
-        $stmt->bindValue(':limit', (int)$limit, PDO::PARAM_INT);
+        public function getRandomArticles() {
+        $stmt = $this->pdo->prepare("SELECT id, title, content, created_at FROM articles ORDER BY RAND() LIMIT 3");
         //execute and return as associative array
         $stmt->execute();
         return $stmt->fetchAll(PDO::FETCH_ASSOC);
