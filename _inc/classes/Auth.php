@@ -39,10 +39,13 @@ class Auth {
 
     //logging out, destroying cookies and session
     public function logout(){
+        //emptying session
         $_SESSION = [];
 
-        if (ini_get("session.use_cookies")){
+        //check if cookies are being used
+        if(ini_get("session.use_cookies")){
             $params = session_get_cookie_params();
+            //overwriting cookies with empty value and expired timestamp
             setcookie(session_name(),'', time() - 42000, 
                 $params["path"], 
                 $params["domain"],
@@ -51,7 +54,9 @@ class Auth {
             );
         }
 
+        //kills the session
         session_destroy();
+        //redirects to login page
         header('Location: admin_login.php');
         exit;
     }

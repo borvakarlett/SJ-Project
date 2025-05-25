@@ -10,12 +10,12 @@
 
         //constructor for connecting to database through pdo and dsn
         public function __construct(){
-            $dsn = "mysql:host={$this->host};dbname={$this->db};charset={$this->charset}";
+            $dsn= "mysql:host={$this->host};dbname={$this->db};charset={$this->charset}";
             try{
                 $this->pdo = new PDO($dsn, $this->user, $this->pass);
                 //throws error when something goes wrong
                 $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-            } catch (PDOException $e){
+            }catch (PDOException $e){
                 die('Connection failed: '.$e->getMessage());
             }
             

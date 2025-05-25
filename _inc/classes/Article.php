@@ -6,13 +6,16 @@
             $this->pdo = $pdo;
         }
 
+        //method for getting all articles from db
         public function getAllArticles(){
             $sql = "SELECT id, title, created_at FROM articles ORDER BY created_at DESC";
+            //
             $stmt = $this->pdo->prepare($sql);
             $stmt->execute();
             return $stmt->fetchAll(PDO::FETCH_ASSOC);
         }
 
+        //method which finds article by id
         public function getArticleById($id){
             $sql = "SELECT * FROM articles WHERE id = ?";
             $stmt = $this->pdo->prepare($sql);
@@ -20,16 +23,19 @@
             return $stmt->fetch(PDO::FETCH_ASSOC);
         }
 
+        //method for creating article
         public function createArticle($title, $content, $rating){
             $stmt = $this->pdo->prepare("INSERT INTO articles (title, content, rating, created_at) VALUES (?, ?, ?, NOW())");
             return $stmt->execute([$title, $content, $rating]);
         }
 
+        //method for editing article
         public function editArticle($id, $title, $content, $rating){
             $stmt = $this->pdo->prepare("UPDATE articles SET title = ?, content = ?, rating = ? WHERE id = ?");
             return $stmt->execute([$title, $content, $rating, $id]);
         }
 
+        //method for deleting article
         public function deleteArticle($id){
             $stmt = $this->pdo->prepare("DELETE FROM articles WHERE id = ?");
             return $stmt->execute([$id]);
