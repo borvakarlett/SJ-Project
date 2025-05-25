@@ -1,5 +1,4 @@
 <?php
-/*require_once('_inc/classes/Database.php');*/
 
 class Auth {
     private $pdo;
